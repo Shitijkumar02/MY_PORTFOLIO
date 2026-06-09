@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta property="og:title" content="Shitij Kumar Portfolio">
+<meta property="og:description" content="Software Developer | AI Enthusiast | Creative Builder">
+<meta property="og:image" content="preview.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shitij Kumar — Software Developer & AI Engineer</title>
+<meta name="description" content="Shitij Kumar — B.Tech Student, Software Developer, AI/ML Engineer based in Greater Noida, India."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   RESET & ROOT VARIABLES
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080c10;
+  --bg2:#0d1117;
+  --bg3:#111820;
+  --cyan:#00e5ff;
+  --purple:#7b61ff;
+  --orange:#ff6b35;
+  --text:#e8edf5;
+  --muted:#6b7a93;
+  --border:rgba(255,255,255,0.07);
+  --glass:rgba(255,255,255,0.04);
+  --glass2:rgba(0,229,255,0.05);
+  --font-head:'Syne',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --font-body:'Instrument Sans',sans-serif;
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);cursor:none;overflow-x:hidden;min-height:100vh}
+::selection{background:var(--cyan);color:#000}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+#cursor{position:fixed;width:10px;height:10px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,background .2s,width .2s,height .2s;mix-blend-mode:screen}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,229,255,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease,width .2s,height .2s,border-color .2s}
+body:has(a:hover,button:hover) #cursor{width:16px;height:16px;background:var(--purple)}
+body:has(a:hover,button:hover) #cursor-ring{width:50px;height:50px;border-color:rgba(123,97,255,0.5)}
+
+/* ============================================================
+   NOISE TEXTURE + GRID OVERLAY
+   ============================================================ */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:.6}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+/* ============================================================
+   FLOATING ORBS
+   ============================================================ */
+.orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);animation:orbFloat linear infinite}
+.orb-1{width:500px;height:500px;background:radial-gradient(circle,rgba(0,229,255,0.08),transparent 70%);top:-100px;left:-100px;animation-duration:20s}
+.orb-2{width:400px;height:400px;background:radial-gradient(circle,rgba(123,97,255,0.08),transparent 70%);bottom:-100px;right:-100px;animation-duration:25s;animation-delay:-10s}
+.orb-3{width:300px;height:300px;background:radial-gradient(circle,rgba(255,107,53,0.06),transparent 70%);top:50%;left:50%;animation-duration:30s;animation-delay:-5s}
+@keyframes orbFloat{0%{transform:translate(0,0) scale(1)}25%{transform:translate(60px,-40px) scale(1.05)}50%{transform:translate(20px,80px) scale(0.95)}75%{transform:translate(-40px,20px) scale(1.02)}100%{transform:translate(0,0) scale(1)}}
+
+/* ============================================================
+   SCROLL PROGRESS BAR
+   ============================================================ */
+#scrollbar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple));z-index:10000;transition:width .1s}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 5vw;height:68px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,backdrop-filter .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(8,12,16,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-color:var(--border)}
+.nav-logo{font-family:var(--font-head);font-weight:800;font-size:1.5rem;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;letter-spacing:-1px}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--cyan);transition:width .3s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:.75rem}
+.btn-contact{font-family:var(--font-mono);font-size:.75rem;padding:.45rem 1.1rem;border:1px solid var(--cyan);color:var(--cyan);background:transparent;border-radius:4px;cursor:pointer;text-decoration:none;transition:background .2s,color .2s;letter-spacing:.06em}
+.btn-contact:hover{background:var(--cyan);color:#000}
+.btn-admin{font-family:var(--font-mono);font-size:.75rem;padding:.45rem .8rem;border:1px solid var(--border);color:var(--muted);background:transparent;border-radius:4px;cursor:pointer;transition:border-color .2s,color .2s;letter-spacing:.06em}
+.btn-admin:hover{border-color:var(--purple);color:var(--purple)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(8,12,16,0.97);backdrop-filter:blur(20px);padding:2rem;flex-direction:column;gap:1.5rem;border-bottom:1px solid var(--border);z-index:999}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--font-mono);font-size:.9rem;color:var(--muted);text-decoration:none;text-transform:uppercase;letter-spacing:.1em;transition:color .2s}
+.mobile-menu a:hover{color:var(--cyan)}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* ============================================================
+   SECTION LAYOUT
+   ============================================================ */
+section{position:relative;z-index:2;padding:7rem 5vw}
+.section-label{font-family:var(--font-mono);font-size:.72rem;color:var(--cyan);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem;display:flex;align-items:center;gap:.6rem}
+.section-label::before{content:'';width:30px;height:1px;background:var(--cyan)}
+h2.section-title{font-family:var(--font-head);font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:1.1;margin-bottom:1rem}
+.gradient-text{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gradient-text-op{background:linear-gradient(135deg,var(--orange),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:68px;overflow:hidden}
+.hero-inner{max-width:900px;position:relative;z-index:2}
+.hero-eyebrow{font-family:var(--font-mono);font-size:.8rem;color:var(--cyan);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:inline-flex;align-items:center;gap:.5rem;opacity:0;animation:fadeUp .6s .2s ease forwards}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--cyan)}
+.hero-name{font-family:var(--font-head);font-weight:800;font-size:clamp(2.8rem,7vw,6rem);line-height:1;letter-spacing:-2px;margin-bottom:.5rem;background:linear-gradient(135deg,#fff 30%,var(--cyan) 70%,var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:fadeUp .6s .4s ease forwards}
+.hero-subtitle{font-family:var(--font-head);font-weight:700;font-size:clamp(1.1rem,2.5vw,1.8rem);color:var(--muted);margin-bottom:1.5rem;opacity:0;animation:fadeUp .6s .6s ease forwards;min-height:2em}
+.hero-desc{font-size:1.05rem;color:var(--muted);max-width:560px;line-height:1.75;margin-bottom:2.5rem;opacity:0;animation:fadeUp .6s .8s ease forwards}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3.5rem;opacity:0;animation:fadeUp .6s 1s ease forwards}
+.btn-primary{font-family:var(--font-mono);font-size:.85rem;padding:.75rem 1.75rem;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#000;border:none;border-radius:6px;cursor:pointer;text-decoration:none;font-weight:500;letter-spacing:.04em;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,229,255,0.3)}
+.btn-outline{font-family:var(--font-mono);font-size:.85rem;padding:.73rem 1.73rem;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:6px;cursor:pointer;text-decoration:none;font-weight:500;letter-spacing:.04em;transition:border-color .2s,color .2s,transform .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:3rem;flex-wrap:wrap;opacity:0;animation:fadeUp .6s 1.2s ease forwards}
+.stat-item{display:flex;flex-direction:column;gap:.3rem}
+.stat-num{font-family:var(--font-head);font-weight:800;font-size:2rem;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.social-links{position:fixed;left:2vw;bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;z-index:100;opacity:0;animation:fadeIn 1s 1.5s ease forwards}
+.social-links::after{content:'';width:1px;height:60px;background:var(--border);margin-top:.5rem}
+.social-links a{color:var(--muted);text-decoration:none;font-family:var(--font-mono);font-size:.7rem;writing-mode:vertical-rl;letter-spacing:.12em;transition:color .2s;text-transform:uppercase}
+.social-links a:hover{color:var(--cyan)}
+.scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fadeIn 1s 1.8s ease forwards}
+.scroll-indicator span{font-family:var(--font-mono);font-size:.65rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase}
+.scroll-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:scrollBounce 1.5s ease infinite}
+@keyframes scrollBounce{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.3}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ============================================================
+   TYPING EFFECT
+   ============================================================ */
+.typed-cursor{display:inline-block;width:3px;height:1.1em;background:var(--cyan);margin-left:2px;animation:blink .7s steps(1) infinite;vertical-align:text-bottom}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:3rem}
+.about-text p{font-size:1.05rem;line-height:1.85;color:var(--muted);margin-bottom:1.5rem}
+.about-text p span{color:var(--text)}
+.info-card{background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:2rem;position:relative;overflow:hidden}
+.info-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple))}
+.info-row{display:flex;align-items:flex-start;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--border)}
+.info-row:last-child{border-bottom:none}
+.info-icon{width:34px;height:34px;background:var(--glass2);border:1px solid rgba(0,229,255,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem}
+.info-details{display:flex;flex-direction:column;gap:.2rem}
+.info-key{font-family:var(--font-mono);font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.info-val{font-size:.9rem;color:var(--text)}
+.info-val a{color:var(--cyan);text-decoration:none;transition:color .2s}
+.info-val a:hover{color:var(--purple)}
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
+.skill-card{background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:1.75rem;transition:border-color .3s,transform .3s;position:relative;overflow:hidden}
+.skill-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,255,0.03),transparent);opacity:0;transition:opacity .3s}
+.skill-card:hover{border-color:rgba(0,229,255,0.25);transform:translateY(-3px)}
+.skill-card:hover::after{opacity:1}
+.skill-cat{font-family:var(--font-head);font-weight:700;font-size:1rem;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.skill-emoji{font-size:1.3rem}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+.tag{font-family:var(--font-mono);font-size:.7rem;padding:.3rem .7rem;border-radius:100px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--muted);letter-spacing:.05em;transition:background .2s,border-color .2s,color .2s}
+.tag.highlight{background:rgba(0,229,255,0.08);border-color:rgba(0,229,255,0.3);color:var(--cyan)}
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.75rem;margin-top:3rem}
+.project-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:2rem;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;display:flex;flex-direction:column;gap:1rem}
+.project-card:hover{border-color:rgba(0,229,255,0.2);transform:translateY(-5px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.project-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.project-icon{font-size:2rem;line-height:1}
+.project-badge{font-family:var(--font-mono);font-size:.65rem;padding:.3rem .7rem;border-radius:100px;letter-spacing:.08em;text-transform:uppercase}
+.badge-live{background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.3);color:var(--cyan)}
+.badge-ai{background:rgba(123,97,255,0.1);border:1px solid rgba(123,97,255,0.3);color:var(--purple)}
+.badge-wip{background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.3);color:var(--orange)}
+.project-title{font-family:var(--font-head);font-weight:700;font-size:1.15rem;color:var(--text)}
+.project-desc{font-size:.9rem;color:var(--muted);line-height:1.7}
+.project-meta{display:flex;flex-wrap:wrap;gap:.5rem}
+.meta-tag{font-family:var(--font-mono);font-size:.65rem;color:var(--muted);background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:.2rem .6rem;border-radius:4px}
+.project-stack{display:flex;flex-wrap:wrap;gap:.4rem}
+.stack-tag{font-family:var(--font-mono);font-size:.65rem;padding:.25rem .6rem;background:rgba(123,97,255,0.08);border:1px solid rgba(123,97,255,0.2);color:#a094ff;border-radius:4px}
+.project-actions{display:flex;gap:.75rem;margin-top:auto}
+.proj-btn{font-family:var(--font-mono);font-size:.72rem;padding:.4rem 1rem;border-radius:6px;cursor:pointer;text-decoration:none;letter-spacing:.05em;transition:background .2s,color .2s,border-color .2s;display:inline-flex;align-items:center;gap:.4rem}
+.proj-btn-primary{background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);color:var(--cyan)}
+.proj-btn-primary:hover{background:rgba(0,229,255,0.15)}
+.proj-btn-secondary{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.proj-btn-secondary:hover{border-color:var(--purple);color:var(--purple)}
+
+/* ============================================================
+   EDUCATION TIMELINE
+   ============================================================ */
+.timeline{position:relative;margin-top:3rem;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--cyan),var(--purple),var(--orange))}
+.tl-item{position:relative;padding:0 0 3rem 2.5rem;opacity:1}
+.tl-dot{position:absolute;left:-7px;top:6px;width:14px;height:14px;border-radius:50%;border:2px solid var(--bg);box-shadow:0 0 0 2px currentColor;z-index:1}
+.tl-dot.cyan{background:var(--cyan);color:var(--cyan)}
+.tl-dot.purple{background:var(--purple);color:var(--purple)}
+.tl-dot.orange{background:var(--orange);color:var(--orange)}
+.tl-date{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+.tl-degree{font-family:var(--font-head);font-weight:700;font-size:1.15rem;color:var(--text);margin-bottom:.3rem}
+.tl-inst{font-size:.9rem;color:var(--muted);margin-bottom:.5rem}
+.tl-meta{font-family:var(--font-mono);font-size:.75rem;color:var(--cyan)}
+
+/* ============================================================
+   CERTIFICATIONS
+   ============================================================ */
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;margin-top:3rem}
+.cert-card{background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:1.6rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color .3s,transform .3s}
+.cert-card:hover{border-color:rgba(123,97,255,0.3);transform:translateY(-3px)}
+.cert-icon{font-size:2rem;line-height:1;flex-shrink:0}
+.cert-info{}
+.cert-name{font-family:var(--font-head);font-weight:600;font-size:.95rem;color:var(--text);margin-bottom:.3rem}
+.cert-issuer{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.06em}
+.cert-year{font-family:var(--font-mono);font-size:.65rem;color:var(--purple);margin-top:.25rem}
+
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem;margin-top:3rem}
+.ach-card{background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:1.75rem;transition:transform .3s;position:relative;overflow:hidden}
+.ach-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple));transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.ach-card:hover{transform:translateY(-3px)}
+.ach-card:hover::after{transform:scaleX(1)}
+.ach-emoji{font-size:2.2rem;margin-bottom:1rem}
+.ach-title{font-family:var(--font-head);font-weight:700;font-size:1rem;color:var(--text);margin-bottom:.5rem}
+.ach-desc{font-size:.85rem;color:var(--muted);line-height:1.6}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem;align-items:start}
+.contact-links{display:flex;flex-direction:column;gap:1rem}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;background:var(--glass);border:1px solid var(--border);border-radius:10px;text-decoration:none;transition:border-color .3s,transform .2s,background .3s}
+.contact-link:hover{border-color:rgba(0,229,255,0.3);transform:translateX(6px);background:rgba(0,229,255,0.04)}
+.contact-link-icon{width:38px;height:38px;background:var(--glass2);border:1px solid rgba(0,229,255,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.contact-link-text{display:flex;flex-direction:column;gap:.15rem}
+.contact-link-label{font-family:var(--font-mono);font-size:.65rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.contact-link-val{font-size:.9rem;color:var(--text)}
+.contact-form{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:2rem;position:relative;overflow:hidden}
+.contact-form::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple))}
+.form-group{margin-bottom:1.25rem}
+.form-group label{font-family:var(--font-mono);font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.5rem}
+.form-group input,.form-group textarea{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:.8rem 1rem;font-family:var(--font-body);font-size:.9rem;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;resize:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,0.08)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted)}
+.form-submit{width:100%;padding:.85rem;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#000;font-family:var(--font-mono);font-size:.85rem;font-weight:500;border:none;border-radius:8px;cursor:pointer;letter-spacing:.06em;transition:transform .2s,box-shadow .2s}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,229,255,0.3)}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{position:relative;z-index:2;padding:2rem 5vw;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
+.footer-copy{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em}
+.footer-socials{display:flex;gap:1.25rem;align-items:center}
+.footer-socials a{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.footer-socials a:hover{color:var(--cyan)}
+#scroll-top{width:38px;height:38px;background:var(--glass);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--muted);transition:border-color .2s,color .2s;flex-shrink:0}
+#scroll-top:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* ============================================================
+   ADMIN PANEL
+   ============================================================ */
+.admin-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:2000;display:none;align-items:center;justify-content:center}
+.admin-overlay.open{display:flex}
+.admin-lock{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:3rem;width:380px;max-width:90vw;text-align:center}
+.admin-lock h3{font-family:var(--font-head);font-weight:700;font-size:1.5rem;margin-bottom:.5rem}
+.admin-lock p{font-size:.9rem;color:var(--muted);margin-bottom:1.75rem}
+.admin-lock input{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;font-family:var(--font-body);font-size:1rem;color:var(--text);outline:none;text-align:center;letter-spacing:.2em;transition:border-color .2s;margin-bottom:1rem}
+.admin-lock input:focus{border-color:var(--cyan)}
+.admin-lock-err{font-family:var(--font-mono);font-size:.75rem;color:var(--orange);display:none;margin-bottom:.75rem}
+.admin-panel{background:var(--bg2);border:1px solid var(--border);border-radius:16px;width:900px;max-width:96vw;max-height:90vh;overflow:hidden;display:flex;flex-direction:column}
+.admin-panel-head{padding:1.25rem 1.75rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.admin-panel-head h3{font-family:var(--font-head);font-weight:700;font-size:1.1rem}
+.admin-close{background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);padding:.35rem .7rem;cursor:pointer;font-size:1.1rem;transition:border-color .2s,color .2s}
+.admin-close:hover{border-color:var(--orange);color:var(--orange)}
+.admin-tabs{display:flex;gap:.5rem;padding:.75rem 1.75rem;border-bottom:1px solid var(--border);overflow-x:auto}
+.admin-tab{font-family:var(--font-mono);font-size:.72rem;padding:.4rem 1rem;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.admin-tab.active{background:rgba(0,229,255,0.08);border-color:rgba(0,229,255,0.3);color:var(--cyan)}
+.admin-body{padding:1.5rem 1.75rem;overflow-y:auto;flex:1}
+.admin-section-head{font-family:var(--font-head);font-weight:700;font-size:1rem;margin-bottom:1rem;color:var(--text)}
+.admin-items{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem}
+.admin-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.admin-item-info{flex:1;min-width:0;display:flex;flex-direction:column;}
+.admin-item-title{font-size:.9rem;color:var(--text);font-weight:500;margin-bottom:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.admin-item-sub{font-family:var(--font-mono);font-size:.68rem;color:var(--muted)}
+.admin-del{background:transparent;border:1px solid var(--border);border-radius:5px;color:var(--muted);padding:.3rem .6rem;cursor:pointer;font-size:.75rem;transition:border-color .2s,color .2s;font-family:var(--font-mono);flex-shrink:0}
+.admin-actions{display:flex;gap:.5rem;flex-shrink:0;}
+.admin-del:hover{border-color:var(--orange);color:var(--orange)}
+.admin-form{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.admin-form h4{font-family:var(--font-head);font-weight:700;font-size:.9rem;margin-bottom:1rem;color:var(--cyan)}
+.af-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.af-row.single{grid-template-columns:1fr}
+.af-field{display:flex;flex-direction:column;gap:.35rem}
+.af-field label{font-family:var(--font-mono);font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.af-field input,.af-field textarea,.af-field select{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;padding:.6rem .8rem;font-family:var(--font-body);font-size:.85rem;color:var(--text);outline:none;transition:border-color .2s;resize:none}
+.af-field select option{background:var(--bg2)}
+.af-field input:focus,.af-field textarea:focus,.af-field select:focus{border-color:var(--cyan)}
+.af-submit{margin-top:.75rem;padding:.65rem 1.5rem;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#000;font-family:var(--font-mono);font-size:.78rem;font-weight:500;border:none;border-radius:6px;cursor:pointer;letter-spacing:.05em;transition:transform .2s}
+.af-submit:hover{transform:translateY(-1px)}
+.settings-section{margin-bottom:2rem}
+.settings-section h4{font-family:var(--font-head);font-weight:700;font-size:.9rem;margin-bottom:1rem;color:var(--orange)}
+.settings-row{display:flex;gap:.75rem;align-items:flex-end;flex-wrap:wrap}
+.settings-row .af-field{flex:1;min-width:180px}
+.danger-btn{padding:.6rem 1.25rem;background:transparent;border:1px solid var(--orange);color:var(--orange);font-family:var(--font-mono);font-size:.75rem;border-radius:6px;cursor:pointer;letter-spacing:.05em;transition:background .2s}
+.danger-btn:hover{background:rgba(255,107,53,0.1)}
+.admin-msg{font-family:var(--font-mono);font-size:.75rem;margin-top:.5rem;display:none}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .af-row{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{padding:0 4vw}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .social-links{display:none}
+  section{padding:5rem 4vw}
+  .hero-stats{gap:2rem}
+  .admin-panel{max-height:95vh}
+  .footer-socials{display:none}
+}
+@media(max-width:480px){
+  .hero-name{letter-spacing:-1px}
+  .hero-ctas{flex-direction:column}
+  .btn-primary,.btn-outline{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Scroll Progress -->
+<div id="scrollbar"></div>
+
+<!-- Floating Orbs -->
+<div class="orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- ========================================================
+     NAVBAR
+     ======================================================== -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">SK.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#contact" class="btn-contact">Let's Talk</a>
+    <button class="btn-admin" onclick="openAdmin()">⚙ Admin</button>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#education" onclick="closeMenu()">Education</a>
+  <a href="#certifications" onclick="closeMenu()">Certifications</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- Social Links -->
+<div class="social-links">
+  <a href="https://github.com/Shitijkumar02" target="_blank">GH</a>
+  <a href="https://linkedin.com/in/shitij-kumar-1" target="_blank">LI</a>
+  <a href="https://leetcode.com/u/Shitij_kumar02/" target="_blank">LC</a>
+  <a href="mailto:Shitijkumar737@gmail.com">ML</a>
+</div>
+
+<!-- ========================================================
+     HERO
+     ======================================================== -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Welcome My Lords/Lady</div>
+    <h1 class="hero-name">Shitij Kumar</h1>
+    <div class="hero-subtitle"><span id="typed-text"></span><span class="typed-cursor"></span></div>
+    <p class="hero-desc"> Just a passionate B.Tech graduate turning ideas into reality with code, creativity,and AI. Always eager to learn, build meaningful projects, and grow alongside amazing people who inspire innovation and push limits every day. And if my work or profile catches your attention, maybe this won’t be your last visit here :).</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        View Projects
+      </a>
+      <a href="mailto:Shitijkumar737@gmail.com" class="btn-outline">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact Me
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num" id="stat-cgpa">7.0</span>
+        <span class="stat-label">CGPA</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="stat-projects">0</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="stat-certs">0</span>
+        <span class="stat-label">Certifications</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="stat-ach">0</span>
+        <span class="stat-label">Achievements</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- ========================================================
+     ABOUT
+     ======================================================== -->
+<section id="about">
+  <div class="section-label reveal">About Me</div>
+  <h2 class="section-title reveal">Crafting Solutions,<br><span class="gradient-text">Not Just Code</span></h2>
+  <div class="about-grid">
+    <div class="about-text reveal-left">
+      <p>I'm <span>Shitij Kumar</span>, a motivated <span>B.Tech CSE student (2022–26)</span> at Mangalmay Institution of Engineering & Technology, Greater Noida. I have a strong foundation in software development, AI/ML systems, and full-stack engineering.</p>
+      <p>I'm passionate about building <span>impactful technology products</span> that address real-world challenges — from intelligent crop disease detection using deep learning to real-time parking management systems.</p>
+      <p>My approach blends <span>clean backend architecture</span> with <span>intuitive frontends</span>, driven by curiosity and a relentless desire to learn. I thrive at the intersection of software engineering and artificial intelligence.</p>
+      <p>When I'm not writing code, I'm on the cricket field, and I've been a <span>Cricket Champion</span> at the inter-school level — discipline and teamwork carry across every domain.</p>
+    </div>
+    <div class="info-card reveal-right">
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div class="info-details">
+          <span class="info-key">Location</span>
+          <span class="info-val">Greater Noida, Uttar Pradesh, India</span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">✉️</div>
+        <div class="info-details">
+          <span class="info-key">Email</span>
+          <span class="info-val"><a href="mailto:Shitijkumar737@gmail.com">Shitijkumar737@gmail.com</a></span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📱</div>
+        <div class="info-details">
+          <span class="info-key">Phone</span>
+          <span class="info-val"><a href="tel:+917087142494">+91-7087142494</a></span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">💼</div>
+        <div class="info-details">
+          <span class="info-key">LinkedIn</span>
+          <span class="info-val"><a href="https://linkedin.com/in/shitij-kumar-1" target="_blank">linkedin.com/in/shitij-kumar-1</a></span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🐙</div>
+        <div class="info-details">
+          <span class="info-key">GitHub</span>
+          <span class="info-val"><a href="https://github.com/Shitijkumar02" target="_blank">github.com/Shitijkumar02</a></span>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🧩</div>
+        <div class="info-details">
+          <span class="info-key">LeetCode</span>
+          <span class="info-val"><a href="https://leetcode.com/u/Shitij_kumar02/" target="_blank">leetcode.com/u/Shitij_kumar02</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     SKILLS
+     ======================================================== -->
+<section id="skills">
+  <div class="section-label reveal">Technical Arsenal</div>
+  <h2 class="section-title reveal">Skills &amp; <span class="gradient-text">Technologies</span></h2>
+  <div class="skills-grid" id="skills-grid"></div>
+</section>
+
+<!-- ========================================================
+     PROJECTS
+     ======================================================== -->
+<section id="projects">
+  <div class="section-label reveal">Selected Work</div>
+  <h2 class="section-title reveal">What I've <span class="gradient-text">Built</span></h2>
+  <div class="projects-grid" id="projects-grid"></div>
+</section>
+
+<!-- ========================================================
+     EDUCATION
+     ======================================================== -->
+<section id="education">
+  <div class="section-label reveal">Academic Background</div>
+  <h2 class="section-title reveal">Education <span class="gradient-text">Timeline</span></h2>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<!-- ========================================================
+     CERTIFICATIONS
+     ======================================================== -->
+<section id="certifications">
+  <div class="section-label reveal">Credentials</div>
+  <h2 class="section-title reveal">Certifications &amp; <span class="gradient-text">Training</span></h2>
+  <div class="certs-grid" id="certs-grid"></div>
+</section>
+
+<!-- ========================================================
+     ACHIEVEMENTS
+     ======================================================== -->
+<section id="achievements">
+  <div class="section-label reveal">Recognition</div>
+  <h2 class="section-title reveal">Achievements &amp; <span class="gradient-text-op">Milestones</span></h2>
+  <div class="achievements-grid" id="achievements-grid"></div>
+</section>
+
+<!-- ========================================================
+     CONTACT
+     ======================================================== -->
+<section id="contact">
+  <div class="section-label reveal">Get In Touch</div>
+  <h2 class="section-title reveal">Let's <span class="gradient-text">Collaborate</span></h2>
+  <p class="reveal" style="color:var(--muted);max-width:480px;margin-bottom:2rem;line-height:1.7;font-size:1rem">Whether you have a project idea, an opportunity, or just want to chat about tech — my inbox is always open.</p>
+  <div class="contact-grid">
+    <div class="contact-links reveal-left">
+      <a href="mailto:Shitijkumar737@gmail.com" class="contact-link">
+        <div class="contact-link-icon">✉️</div>
+        <div class="contact-link-text">
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-val">Shitijkumar737@gmail.com</span>
+        </div>
+      </a>
+      <a href="tel:+917087142494" class="contact-link">
+        <div class="contact-link-icon">📱</div>
+        <div class="contact-link-text">
+          <span class="contact-link-label">Phone</span>
+          <span class="contact-link-val">+91-7087142494</span>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/shitij-kumar-1" target="_blank" class="contact-link">
+        <div class="contact-link-icon">💼</div>
+        <div class="contact-link-text">
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-val">linkedin.com/in/shitij-kumar-1</span>
+        </div>
+      </a>
+      <a href="https://github.com/Shitijkumar02" target="_blank" class="contact-link">
+        <div class="contact-link-icon">🐙</div>
+        <div class="contact-link-text">
+          <span class="contact-link-label">GitHub</span>
+          <span class="contact-link-val">github.com/Shitijkumar02</span>
+        </div>
+      </a>
+      <a href="https://leetcode.com/u/Shitij_kumar02/" target="_blank" class="contact-link">
+        <div class="contact-link-icon">🧩</div>
+        <div class="contact-link-text">
+          <span class="contact-link-label">LeetCode</span>
+          <span class="contact-link-val">leetcode.com/u/Shitij_kumar02</span>
+        </div>
+      </a>
+    </div>
+    <div class="contact-form reveal-right">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="cf-name" placeholder="John Doe"/>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="cf-email" placeholder="john@example.com"/>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="cf-message" rows="5" placeholder="Tell me about your project or opportunity…"></textarea>
+      </div>
+      <button class="form-submit" onclick="submitContact()">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     FOOTER
+     ======================================================== -->
+<footer>
+  <span class="footer-copy">© 2024 Shitij Kumar — Crafted with ☕ & curiosity</span>
+  <div class="footer-socials">
+    <a href="https://github.com/Shitijkumar02" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/shitij-kumar-1" target="_blank">LinkedIn</a>
+    <a href="https://leetcode.com/u/Shitij_kumar02/" target="_blank">LeetCode</a>
+    <a href="mailto:Shitijkumar737@gmail.com">Email</a>
+  </div>
+  <div id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</div>
+</footer>
+
+<!-- ========================================================
+     ADMIN PANEL OVERLAY
+     ======================================================== -->
+<div class="admin-overlay" id="adminOverlay">
+  <!-- Lock Screen -->
+  <div class="admin-lock" id="adminLock">
+    <div style="font-size:2.5rem;margin-bottom:.75rem">🔒</div>
+    <h3>Admin Panel</h3>
+    <p>Enter password to manage your portfolio content</p>
+    <input type="password" id="adminPwInput" placeholder="••••••••••" onkeydown="if(event.key==='Enter')checkPw()"/>
+    <div class="admin-lock-err" id="adminErr">Incorrect password. Try again.</div>
+    <button class="btn-primary" style="width:100%;justify-content:center" onclick="checkPw()">Unlock</button>
+    <button class="btn-outline" style="width:100%;justify-content:center;margin-top:.5rem" onclick="closeAdmin()">Cancel</button>
+  </div>
+
+  <!-- Panel -->
+  <div class="admin-panel" id="adminPanel" style="display:none">
+    <div class="admin-panel-head">
+      <h3>⚙ Portfolio Admin — Shitij Kumar</h3>
+      <button class="admin-close" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="showTab('projects')">Projects</button>
+      <button class="admin-tab" onclick="showTab('skills')">Skills</button>
+      <button class="admin-tab" onclick="showTab('certs')">Certs</button>
+      <button class="admin-tab" onclick="showTab('achievements')">Achievements</button>
+      <button class="admin-tab" onclick="showTab('education')">Education</button>
+      <button class="admin-tab" onclick="showTab('settings')">Settings</button>
+    </div>
+    <div class="admin-body" id="adminBody"></div>
+  </div>
+</div>
+
+<!-- ========================================================
+     JAVASCRIPT
+     ======================================================== -->
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+<script>
+/* ============================================================
+   FIREBASE CONFIG
+============================================================ */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAswIiIekSNAN1NO-D_J5K84OPoGgh727w",
+  authDomain: "shitij-portfolio.firebaseapp.com",
+  projectId: "shitij-portfolio",
+  storageBucket: "shitij-portfolio.firebasestorage.app",
+  messagingSenderId: "615920656325",
+  appId: "1:615920656325:web:beb524b394dbbbe72bf5ac"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+const auth = firebase.auth();
+const storage = firebase.storage();
+async function testFirebase() {
+  try {
+
+    await db.collection("test").doc("connection").set({
+      status: "connected",
+      time: new Date().toISOString()
+    });
+
+    console.log("✅ Firebase Connected Successfully");
+
+  } catch (err) {
+
+    console.error("❌ Firebase Error:", err);
+
+  }
+}
+/* ============================================================
+   DEFAULT DATA
+   ============================================================ */
+const DEFAULTS = {
+  projects: [
+    {id:1,icon:'🅿️',title:'Parking Lot System',status:'live',desc:'Real-time parking availability tracking system with a user-friendly dashboard demonstrating strong backend development and problem-solving skills.',duration:'3 months',team:'Solo',role:'Full-Stack Developer',stack:'Flask, Python, HTML, CSS, JavaScript',github:'https://github.com/Shitijkumar02'},
+    {id:2,icon:'🌿',title:'Agri-Tech Crop Disease Detection',status:'ai',desc:'AI-powered crop disease detection system using deep learning to identify defective leaves and diagnose plant diseases with high accuracy.',duration:'4 months',team:'Solo',role:'AI/ML Engineer',stack:'Python, PyTorch, TensorFlow, HTML, CSS, JavaScript',github:'https://github.com/Shitijkumar02'}
+  ],
+  skills: [
+    {id:1,cat:'Languages',emoji:'💻',tags:'Java,Python',highlights:'Java,Python'},
+    {id:2,cat:'Web Development',emoji:'🌐',tags:'HTML,CSS,JavaScript,React',highlights:'React,JavaScript'},
+    {id:3,cat:'Databases',emoji:'🗄️',tags:'MySQL,Firebase',highlights:'MySQL'},
+    {id:4,cat:'AI / ML',emoji:'🧠',tags:'PyTorch,TensorFlow,Scikit-learn,NumPy',highlights:'PyTorch,TensorFlow'},
+    {id:5,cat:'Soft Skills',emoji:'🤝',tags:'Problem Solving,Teamwork,Communication,Leadership,Adaptability',highlights:'Problem Solving'},
+    {id:6,cat:'Tools & IDE',emoji:'🛠️',tags:'Git,GitHub,VS Code,Jupyter Notebook,Postman',highlights:'Git,GitHub'}
+  ],
+  certs: [
+    {id:1,icon:'🐍',name:'Advanced Python Training',issuer:'NIELIT / Training Institute',year:'2023'},
+    {id:2,icon:'🎓',name:'ADCA Certification',issuer:'Advanced Diploma in Computer Applications',year:'2023'},
+    {id:3,icon:'🔐',name:'Cybersecurity Virtual Program',issuer:'JPMorgan Chase & Co.',year:'2024'}
+  ],
+  achievements: [
+    {id:1,emoji:'🥈',title:'2nd Rank — ADCA',desc:'Achieved 2nd rank in the Advanced Diploma in Computer Applications program across the batch.'},
+    {id:2,emoji:'🏏',title:'Cricket Champion',desc:'Led team to victory in the Inter-school Cricket Tournament — demonstrating leadership and teamwork.'},
+    {id:3,emoji:'📊',title:'7.0 CGPA in B.Tech',desc:'Maintaining a strong 7.0 CGPA in B.Tech CSE at Mangalmay Institute of Engineering & Technology.'},
+    {id:4,emoji:'🏆',title:'95% in Class 10',desc:'Scored an outstanding 95% in Class 10 board examinations, showcasing strong academic foundation.'}
+  ],
+  education: [
+    {id:1,dot:'cyan',degree:'B.Tech — Computer Science & Engineering',inst:'Mangalmay Institution of Engineering & Technology, Greater Noida',year:'2022 – 2026',meta:'CGPA: 7.0 / 10'},
+    {id:2,dot:'purple',degree:'Intermediate (12th)',inst:'CBSE Board',year:'2021 – 2022',meta:'Score: 80%'},
+    {id:3,dot:'orange',degree:'High School (10th)',inst:'CBSE Board',year:'2019 – 2020',meta:'Score: 95%'}
+  ],
+  settings: {
+    heroTitle:'Shitij Kumar',
+    heroDesc:'B.Tech student & aspiring Software Developer based in Greater Noida, India. I build AI-powered systems, full-stack applications, and automation tools that solve real-world problems.',
+    password:'shitij2024'
+  }
+};
+
+/* ============================================================
+   STORAGE HELPERS
+   ============================================================ */
+/* ============================================================
+   FIREBASE HELPERS
+============================================================ */
+
+async function saveData(collection, data) {
+
+  try {
+
+    await db.collection("portfolio")
+      .doc(collection)
+      .set({
+        items: data
+      });
+
+    console.log(collection + " saved");
+
+  } catch(err) {
+
+    console.error("Save Error:", err);
+
+  }
+
+}
+
+async function loadData(collection, fallback) {
+
+  try {
+
+    const doc = await db
+      .collection("portfolio")
+      .doc(collection)
+      .get();
+
+    if(doc.exists) {
+
+      const data = doc.data();
+
+      if(data.items){
+        return data.items;
+      }
+
+      return data;
+
+    } else {
+
+      await saveData(collection, fallback);
+
+      return fallback;
+
+    }
+
+  } catch(err) {
+
+    console.error("Load Error:", err);
+
+    return fallback;
+
+  }
+
+}
+async function getProjects() {
+  return await loadData("projects", DEFAULTS.projects);
+}
+
+async function getSkills() {
+  return await loadData("skills", DEFAULTS.skills);
+}
+
+async function getCerts() {
+  return await loadData("certs", DEFAULTS.certs);
+}
+
+async function getAchievements() {
+  return await loadData("achievements", DEFAULTS.achievements);
+}
+
+async function getEducation() {
+  return await loadData("education", DEFAULTS.education);
+}
+
+async function getSettings() {
+  return await loadData("settings", DEFAULTS.settings);
+}
+
+/* ============================================================
+   RENDER FUNCTIONS
+   ============================================================ */
+function badgeClass(status){
+  if(status==='live')return 'badge-live';
+  if(status==='ai')return 'badge-ai';
+  return 'badge-wip';
+}
+function badgeLabel(status){
+  if(status==='live')return '● Live';
+  if(status==='ai')return '✦ AI';
+  return '◌ WIP';
+}
+
+async function renderProjects(){
+  const grid=document.getElementById('projects-grid');
+  if(!grid)return;
+  const projects=await getProjects();
+  updateStats();
+  grid.innerHTML=projects.map(p=>{
+    const stack=(p.stack||'').split(',').map(s=>s.trim()).filter(Boolean);
+    return `<div class="project-card reveal">
+      <div class="project-header">
+        <span class="project-icon">${p.icon||'🚀'}</span>
+        <span class="project-badge ${badgeClass(p.status)}">${badgeLabel(p.status)}</span>
+      </div>
+      <div class="project-title">${p.title}</div>
+      <div class="project-desc">${p.desc}</div>
+      <div class="project-meta">
+        ${p.duration?`<span class="meta-tag">⏱ ${p.duration}</span>`:''}
+        ${p.team?`<span class="meta-tag">👥 ${p.team}</span>`:''}
+        ${p.role?`<span class="meta-tag">🎯 ${p.role}</span>`:''}
+      </div>
+      <div class="project-stack">${stack.map(s=>`<span class="stack-tag">${s}</span>`).join('')}</div>
+      <div class="project-actions">
+        ${p.github?`<a href="${p.github}" target="_blank" class="proj-btn proj-btn-primary">⬡ GitHub</a>`:''}
+        <button class="proj-btn proj-btn-secondary" onclick="alert('Demo coming soon!')">↗ Demo</button>
+      </div>
+    </div>`;
+  }).join('');
+  observeReveal();
+}
+
+async function renderSkills(){
+  const grid=document.getElementById('skills-grid');
+  if(!grid)return;
+  const skills=await getSkills();
+  grid.innerHTML=skills.map(s=>{
+    const tags=(s.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
+    const hl=(s.highlights||'').split(',').map(t=>t.trim()).filter(Boolean);
+    return `<div class="skill-card reveal">
+      <div class="skill-cat"><span class="skill-emoji">${s.emoji||'💡'}</span>${s.cat}</div>
+      <div class="tags">${tags.map(t=>`<span class="tag${hl.includes(t)?' highlight':''}">${t}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+  observeReveal();
+}
+
+async function renderTimeline(){
+  const tl=document.getElementById('timeline');
+  if(!tl)return;
+  const edu=await getEducation();
+  tl.innerHTML=edu.map(e=>`<div class="tl-item reveal">
+    <div class="tl-dot ${e.dot}"></div>
+    <div class="tl-date">${e.year}</div>
+    <div class="tl-degree">${e.degree}</div>
+    <div class="tl-inst">${e.inst}</div>
+    <div class="tl-meta">${e.meta}</div>
+  </div>`).join('');
+  observeReveal();
+}
+
+async function renderCerts(){
+  const grid=document.getElementById('certs-grid');
+  if(!grid)return;
+  const certs=await getCerts();
+  updateStats();
+  grid.innerHTML=certs.map(c=>`<div class="cert-card reveal">
+    <div class="cert-icon">${c.icon||'📜'}</div>
+    <div class="cert-info">
+      <div class="cert-name">${c.name}</div>
+      <div class="cert-issuer">${c.issuer}</div>
+      <div class="cert-year">${c.year}</div>
+    </div>
+  </div>`).join('');
+  observeReveal();
+}
+
+async function renderAchievements(){
+  const grid=document.getElementById('achievements-grid');
+  if(!grid)return;
+  const ach=await getAchievements();
+  updateStats();
+  grid.innerHTML=ach.map(a=>`<div class="ach-card reveal">
+    <div class="ach-emoji">${a.emoji||'🏆'}</div>
+    <div class="ach-title">${a.title}</div>
+    <div class="ach-desc">${a.desc}</div>
+  </div>`).join('');
+  observeReveal();
+}
+
+async function updateStats(){
+  const pEl = document.getElementById('stat-projects');
+  const cEl = document.getElementById('stat-certs');
+  const aEl = document.getElementById('stat-ach');
+
+  const projects = await getProjects();
+  const certs = await getCerts();
+  const achievements = await getAchievements();
+
+  if(pEl) pEl.textContent = projects.length;
+  if(cEl) cEl.textContent = certs.length;
+  if(aEl) aEl.textContent = achievements.length;
+}
+
+async function renderAll(){
+  await renderProjects();
+  await renderSkills();
+  await renderTimeline();
+  await renderCerts();
+  await renderAchievements();
+  await updateStats();
+}
+
+
+/* ============================================================
+   TYPING EFFECT
+   ============================================================ */
+const roles=['Software Developer','AI / ML Engineer','Backend Developer','Full-Stack Engineer','Problem Solver'];
+let ri=0,ci=0,deleting=false;
+function typeEffect(){
+  const el=document.getElementById('typed-text');
+  if(!el)return;
+  const cur=roles[ri];
+  if(!deleting){
+    el.textContent=cur.slice(0,ci+1);
+    ci++;
+    if(ci===cur.length){deleting=true;setTimeout(typeEffect,1800);return}
+  }else{
+    el.textContent=cur.slice(0,ci-1);
+    ci--;
+    if(ci===0){deleting=false;ri=(ri+1)%roles.length;}
+  }
+  setTimeout(typeEffect,deleting?50:80);
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+function animateRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+/* ============================================================
+   NAVBAR SCROLL + SCROLL PROGRESS
+   ============================================================ */
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  if(window.scrollY>30)nav.classList.add('scrolled');else nav.classList.remove('scrolled');
+  const scrolled=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('scrollbar').style.width=scrolled+'%';
+});
+
+/* ============================================================
+   SCROLL REVEAL OBSERVER
+   ============================================================ */
+function observeReveal(){
+  const els=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+  els.forEach(el=>obs.observe(el));
+}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+function submitContact(){
+  const name=document.getElementById('cf-name').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const msg=document.getElementById('cf-message').value.trim();
+  if(!name||!email||!msg){alert('Please fill in all fields.');return}
+  const subject=encodeURIComponent('Portfolio Inquiry from '+name);
+  const body=encodeURIComponent(`Hi Shitij,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`);
+  window.location.href=`mailto:Shitijkumar737@gmail.com?subject=${subject}&body=${body}`;
+}
+
+/* ============================================================
+   ADMIN PANEL
+   ============================================================ */
+function openAdmin(){
+  document.getElementById('adminOverlay').classList.add('open');
+  document.getElementById('adminLock').style.display='block';
+  document.getElementById('adminPanel').style.display='none';
+  document.getElementById('adminPwInput').value='';
+  document.getElementById('adminErr').style.display='none';
+}
+function closeAdmin(){
+  document.getElementById('adminOverlay').classList.remove('open');
+}
+async function checkPw(){
+
+  const pw = document.getElementById('adminPwInput').value;
+
+  const settings = await getSettings();
+
+  console.log(settings);
+
+  if(pw === settings.password){
+
+    document.getElementById('adminLock').style.display = 'none';
+
+    document.getElementById('adminPanel').style.display = 'flex';
+
+    document.getElementById('adminPanel').style.flexDirection = 'column';
+
+    showTab('projects');
+
+  } else {
+
+    document.getElementById('adminErr').style.display = 'block';
+
+    document.getElementById('adminPwInput').value = '';
+
+  }
+
+}
+
+async function showTab(tab){
+
+  document.querySelectorAll('.admin-tab').forEach((t,i)=>{
+
+    const tabs = [
+      'projects',
+      'skills',
+      'certs',
+      'achievements',
+      'education',
+      'settings'
+    ];
+
+    t.classList.toggle('active', tabs[i] === tab);
+
+  });
+
+  const body = document.getElementById('adminBody');
+
+  if(tab === 'projects'){
+
+    body.innerHTML = await renderAdminProjects();
+
+  }
+
+  else if(tab === 'skills'){
+
+    body.innerHTML = await renderAdminSkills();
+
+  }
+
+  else if(tab === 'certs'){
+
+    body.innerHTML = await renderAdminCerts();
+
+  }
+
+  else if(tab === 'achievements'){
+
+    body.innerHTML = await renderAdminAchievements();
+
+  }
+
+  else if(tab === 'education'){
+
+    body.innerHTML = await renderAdminEducation();
+
+  }
+
+  else if(tab === 'settings'){
+
+    body.innerHTML = await renderAdminSettings();
+
+  }
+
+}
+
+/* --- PROJECTS TAB --- */
+async function renderAdminProjects(){
+  const projects=await getProjects();
+  const items=projects.map(p=>`<div class="admin-item">
+    <div class="admin-item-info">
+      <div class="admin-item-title">${p.icon} ${p.title}</div>
+      <div class="admin-item-sub">${p.stack}</div>
+    </div>
+    <button class="admin-del" onclick="delProject(${p.id})">Delete</button>
+  </div>`).join('');
+  return `<div class="admin-section-head">Projects (${projects.length})</div>
+  <div class="admin-items">${items||'<p style="color:var(--muted);font-size:.85rem">No projects yet.</p>'}</div>
+  <div class="admin-form">
+    <h4>+ Add New Project</h4>
+    <div class="af-row">
+      <div class="af-field"><label>Icon (emoji)</label><input id="ap-icon" value="🚀" maxlength="4"/></div>
+      <div class="af-field"><label>Status</label><select id="ap-status"><option value="live">Live</option><option value="ai">AI</option><option value="wip">WIP</option></select></div>
+    </div>
+    <div class="af-row single"><div class="af-field"><label>Title</label><input id="ap-title" placeholder="Project Name"/></div></div>
+    <div class="af-row single"><div class="af-field"><label>Description</label><textarea id="ap-desc" rows="3" placeholder="Short description…"></textarea></div></div>
+    <div class="af-row">
+      <div class="af-field"><label>Duration</label><input id="ap-dur" placeholder="e.g. 3 months"/></div>
+      <div class="af-field"><label>Team</label><input id="ap-team" placeholder="e.g. Solo"/></div>
+    </div>
+    <div class="af-row">
+      <div class="af-field"><label>Role</label><input id="ap-role" placeholder="e.g. Full-Stack Developer"/></div>
+      <div class="af-field"><label>GitHub URL</label><input id="ap-gh" placeholder="https://github.com/…"/></div>
+    </div>
+    <div class="af-row single"><div class="af-field"><label>Tech Stack (comma-separated)</label><input id="ap-stack" placeholder="React, Node.js, MongoDB"/></div></div>
+    <button class="af-submit" onclick="addProject()">Add Project</button>
+    <div class="admin-msg" id="ap-msg" style="color:var(--cyan)"></div>
+  </div>`;
+}
+async function delProject(id){
+  if(!confirm('Delete this project?'))return;
+  let p=await getProjects().then(projects => projects.filter(x => x.id !== id));
+  await saveData('projects', p);
+  await renderAll();
+  showTab('projects');
+}
+async function addProject(){
+  const title=document.getElementById('ap-title').value.trim();
+  if(!title){alert('Title is required');return}
+  const projects=await getProjects();
+  projects.push({
+    id:Date.now(),
+    icon:document.getElementById('ap-icon').value||'🚀',
+    title,
+    status:document.getElementById('ap-status').value,
+    desc:document.getElementById('ap-desc').value,
+    duration:document.getElementById('ap-dur').value,
+    team:document.getElementById('ap-team').value,
+    role:document.getElementById('ap-role').value,
+    github:document.getElementById('ap-gh').value,
+    stack:document.getElementById('ap-stack').value
+  });
+  await saveData('projects', projects);
+  await renderAll();
+  const m=document.getElementById('ap-msg');m.textContent='✓ Project added!';m.style.display='block';
+  setTimeout(()=>{showTab('projects')},1200);
+}
+
+/* --- SKILLS TAB --- */
+async function renderAdminSkills(){
+  const skills=await getSkills();
+  const items=skills.map(s=>`<div class="admin-item">
+    <div class="admin-item-info">
+      <div class="admin-item-title">${s.emoji} ${s.cat}</div>
+      <div class="admin-item-sub">${s.tags}</div>
+    </div>
+    <button class="admin-del" onclick="delSkill(${s.id})">Delete</button>
+  </div>`).join('');
+  return `<div class="admin-section-head">Skill Categories (${skills.length})</div>
+  <div class="admin-items">${items||'<p style="color:var(--muted);font-size:.85rem">No skill categories.</p>'}</div>
+  <div class="admin-form">
+    <h4>+ Add Skill Category</h4>
+    <div class="af-row">
+      <div class="af-field"><label>Emoji</label><input id="ask-emoji" value="💡" maxlength="4"/></div>
+      <div class="af-field"><label>Category Name</label><input id="ask-cat" placeholder="e.g. DevOps"/></div>
+    </div>
+    <div class="af-row single"><div class="af-field"><label>Tags (comma-separated)</label><input id="ask-tags" placeholder="Docker, Kubernetes, CI/CD"/></div></div>
+    <div class="af-row single"><div class="af-field"><label>Highlighted Tags (comma-separated, shown cyan)</label><input id="ask-hl" placeholder="Docker"/></div></div>
+    <button class="af-submit" onclick="addSkill()">Add Category</button>
+    <div class="admin-msg" id="ask-msg" style="color:var(--cyan)"></div>
+  </div>`;
+}
+async function delSkill(id){
+  if(!confirm('Delete this skill category?'))return;
+  let s=await getSkills().then(skills => skills.filter(x => x.id !== id));
+  await saveData('skills', s);
+  await renderAll();
+  showTab('skills');
+}
+async function addSkill(){
+  const cat=document.getElementById('ask-cat').value.trim();
+  if(!cat){alert('Category name required');return}
+  const skills=await getSkills();
+  skills.push({id:Date.now(),emoji:document.getElementById('ask-emoji').value||'💡',cat,tags:document.getElementById('ask-tags').value,highlights:document.getElementById('ask-hl').value});
+  await saveData('skills', skills);
+  await renderAll();
+  const m=document.getElementById('ask-msg');m.textContent='✓ Category added!';m.style.display='block';
+  setTimeout(()=>{showTab('skills')},1200);
+}
+
+/* --- CERTS TAB --- */
+async function renderAdminCerts(){
+  const certs=await getCerts();
+  const items=certs.map(c=>`<div class="admin-item">
+    <div class="admin-item-info">
+      <div class="admin-item-title">${c.icon} ${c.name}</div>
+      <div class="admin-item-sub">${c.issuer} • ${c.year}</div>
+    </div>
+    <button class="admin-del" onclick="delCert(${c.id})">Delete</button>
+  </div>`).join('');
+  return `<div class="admin-section-head">Certifications (${certs.length})</div>
+  <div class="admin-items">${items||'<p style="color:var(--muted);font-size:.85rem">No certifications.</p>'}</div>
+  <div class="admin-form">
+    <h4>+ Add Certification</h4>
+    <div class="af-row">
+      <div class="af-field"><label>Icon (emoji)</label><input id="ac-icon" value="📜" maxlength="4"/></div>
+      <div class="af-field"><label>Year</label><input id="ac-year" placeholder="2024"/></div>
+    </div>
+    <div class="af-row single"><div class="af-field"><label>Certification Name</label><input id="ac-name" placeholder="e.g. AWS Cloud Practitioner"/></div></div>
+    <div class="af-row single"><div class="af-field"><label>Issuer / Organization</label><input id="ac-issuer" placeholder="e.g. Amazon Web Services"/></div></div>
+    <button class="af-submit" onclick="addCert()">Add Certification</button>
+    <div class="admin-msg" id="ac-msg" style="color:var(--cyan)"></div>
+  </div>`;
+}
+async function delCert(id){
+  if(!confirm('Delete this certification?'))return;
+  let c=await getCerts().then(certs => certs.filter(x => x.id !== id));
+  await saveData('certs', c);
+  await renderAll();
+  showTab('certs');
+}
+async function addCert(){
+  const name=document.getElementById('ac-name').value.trim();
+  if(!name){alert('Name is required');return}
+  const certs=await getCerts();
+  certs.push({id:Date.now(),icon:document.getElementById('ac-icon').value||'📜',name,issuer:document.getElementById('ac-issuer').value,year:document.getElementById('ac-year').value});
+  await saveData('certs', certs);
+  await renderAll();
+  const m=document.getElementById('ac-msg');m.textContent='✓ Certification added!';m.style.display='block';
+  setTimeout(()=>{showTab('certs')},1200);
+}
+
+/* --- ACHIEVEMENTS TAB --- */
+async function renderAdminAchievements(){
+  const ach=await getAchievements();
+  const items=ach.map(a=>`<div class="admin-item">
+    <div class="admin-item-info">
+      <div class="admin-item-title">${a.emoji} ${a.title}</div>
+      <div class="admin-item-sub">${a.desc.substring(0,60)}…</div>
+    </div>
+    <button class="admin-del" onclick="delAch(${a.id})">Delete</button>
+  </div>`).join('');
+  return `<div class="admin-section-head">Achievements (${ach.length})</div>
+  <div class="admin-items">${items||'<p style="color:var(--muted);font-size:.85rem">No achievements.</p>'}</div>
+  <div class="admin-form">
+    <h4>+ Add Achievement</h4>
+    <div class="af-row">
+      <div class="af-field"><label>Emoji</label><input id="aa-emoji" value="🏆" maxlength="4"/></div>
+      <div class="af-field"><label>Title</label><input id="aa-title" placeholder="Achievement title"/></div>
+    </div>
+    <div class="af-row single"><div class="af-field"><label>Description</label><textarea id="aa-desc" rows="3" placeholder="Brief description…"></textarea></div></div>
+    <button class="af-submit" onclick="addAch()">Add Achievement</button>
+    <div class="admin-msg" id="aa-msg" style="color:var(--cyan)"></div>
+  </div>`;
+}
+async function delAch(id){
+  if(!confirm('Delete this achievement?'))return;
+  let a=await getAchievements().then(achievements => achievements.filter(x => x.id !== id));
+  await saveData('achievements', a);
+  await renderAll();
+  showTab('achievements');
+}
+async function addAch(){
+  const title=document.getElementById('aa-title').value.trim();
+  if(!title){alert('Title is required');return}
+  const ach=await getAchievements();
+  ach.push({id:Date.now(),emoji:document.getElementById('aa-emoji').value||'🏆',title,desc:document.getElementById('aa-desc').value});
+  await saveData('achievements', ach);
+  await renderAll();
+  const m=document.getElementById('aa-msg');m.textContent='✓ Achievement added!';m.style.display='block';
+  setTimeout(()=>{showTab('achievements')},1200);
+}
+
+/* --- EDUCATION TAB --- */
+async function renderAdminEducation(){
+  const edu=await getEducation();
+  const items=edu.map(e=>`<div class="admin-item">
+    <div class="admin-item-info">
+      <div class="admin-item-title">${e.degree}</div>
+      <div class="admin-item-sub">${e.inst} • ${e.year}</div>
+    </div>
+    <button class="admin-del" onclick="delEdu(${e.id})">Delete</button>
+  </div>`).join('');
+  return `<div class="admin-section-head">Education Entries (${edu.length})</div>
+  <div class="admin-items">${items||'<p style="color:var(--muted);font-size:.85rem">No entries.</p>'}</div>
+  <div class="admin-form">
+    <h4>+ Add Education Entry</h4>
+    <div class="af-row">
+      <div class="af-field"><label>Dot Color</label><select id="ae-dot"><option value="cyan">Cyan</option><option value="purple">Purple</option><option value="orange">Orange</option></select></div>
+      <div class="af-field"><label>Year Range</label><input id="ae-year" placeholder="2020 – 2024"/></div>
+    </div>
+    <div class="af-row single"><div class="af-field"><label>Degree / Level</label><input id="ae-degree" placeholder="B.Tech — Computer Science"/></div></div>
+    <div class="af-row single"><div class="af-field"><label>Institution</label><input id="ae-inst" placeholder="University Name"/></div></div>
+    <div class="af-row single"><div class="af-field"><label>Meta (CGPA / Score)</label><input id="ae-meta" placeholder="CGPA: 8.5 / 10"/></div></div>
+    <button class="af-submit" onclick="addEdu()">Add Entry</button>
+    <div class="admin-msg" id="ae-msg" style="color:var(--cyan)"></div>
+  </div>`;
+}
+async function delEdu(id){
+  if(!confirm('Delete this education entry?'))return;
+  let e=await getEducation().then(edu => edu.filter(x => x.id !== id));
+  await saveData('education', e);
+  await renderAll();
+  showTab('education');
+}
+async function addEdu(){
+  const degree=document.getElementById('ae-degree').value.trim();
+  if(!degree){alert('Degree is required');return}
+  const edu=await getEducation();
+  edu.push({id:Date.now(),dot:document.getElementById('ae-dot').value,degree,inst:document.getElementById('ae-inst').value,year:document.getElementById('ae-year').value,meta:document.getElementById('ae-meta').value});
+  await saveData('education', edu);
+  await renderAll();
+  const m=document.getElementById('ae-msg');m.textContent='✓ Entry added!';m.style.display='block';
+  setTimeout(()=>{showTab('education')},1200);
+}
+
+/* --- SETTINGS TAB --- */
+async function renderAdminSettings(){
+  const s=await getSettings();
+  return `<div class="settings-section">
+    <h4>Hero Content</h4>
+    <div class="af-field" style="margin-bottom:.75rem"><label>Hero Title</label><input id="ss-title" value="${s.heroTitle||'S H I T I J'}"/></div>
+    <div class="af-field" style="margin-bottom:.75rem"><label>Hero Description</label><textarea id="ss-desc" rows="3">${s.heroDesc||''}</textarea></div>
+    <button class="af-submit" onclick="saveHero()">Save Hero Content</button>
+    <div class="admin-msg" id="ss-msg" style="color:var(--cyan)"></div>
+  </div>
+  <div class="settings-section">
+    <h4>Change Password</h4>
+    <div class="settings-row">
+      <div class="af-field"><label>New Password</label><input type="password" id="ss-pw1" placeholder="New password"/></div>
+      <div class="af-field"><label>Confirm Password</label><input type="password" id="ss-pw2" placeholder="Confirm password"/></div>
+    </div>
+    <button class="af-submit" style="margin-top:.75rem" onclick="changePw()">Update Password</button>
+    <div class="admin-msg" id="ss-pwmsg" style="color:var(--cyan)"></div>
+  </div>
+  <div class="settings-section">
+    <h4>Danger Zone</h4>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:.75rem">Reset all portfolio data to factory defaults. This cannot be undone.</p>
+    <button class="danger-btn" onclick="resetAll()">⚠ Reset All Data</button>
+  </div>`;
+}
+async function saveHero(){
+  const s=await getSettings();
+  s.heroTitle=document.getElementById('ss-title').value;
+  s.heroDesc=document.getElementById('ss-desc').value;
+  await saveData('settings',s);
+  document.querySelector('.hero-name').textContent=s.heroTitle;
+  document.querySelector('.hero-desc').textContent=s.heroDesc;
+  const m=document.getElementById('ss-msg');m.textContent='✓ Hero content updated!';m.style.display='block';
+  setTimeout(()=>{m.style.display='none'},2000);
+}
+async function changePw(){
+  const p1=document.getElementById('ss-pw1').value;
+  const p2=document.getElementById('ss-pw2').value;
+  const m=document.getElementById('ss-pwmsg');
+  if(!p1){m.textContent='Enter a new password.';m.style.color='var(--orange)';m.style.display='block';return}
+  if(p1!==p2){m.textContent='Passwords do not match.';m.style.color='var(--orange)';m.style.display='block';return}
+  const s=await getSettings();s.password=p1;await saveData('settings',s);
+  m.textContent='✓ Password changed!';m.style.color='var(--cyan)';m.style.display='block';
+  setTimeout(()=>{m.style.display='none'},2000);
+}
+function resetAll(){
+  if(!confirm('Reset ALL portfolio data? This cannot be undone.'))return;
+  ['projects','skills','certs','achievements','education','settings'].forEach(k=>localStorage.removeItem('sk_'+k));
+  renderAll();closeAdmin();alert('✓ Data reset to defaults!');
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+window.addEventListener('DOMContentLoaded', async () => {
+
+  await renderAll();
+  typeEffect();
+  testFirebase();
+
+});
+getProjects().then(data => console.log(data));
+</script>
+</body>
+</html>
